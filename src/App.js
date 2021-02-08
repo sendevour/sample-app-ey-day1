@@ -9,16 +9,14 @@ class App extends PureComponent {
   }
 
   clickHandler = (args) => {
-    console.log('clickHandler');
-
-    //because the component is pure, same state doesn't cause re-render
-    //this does shallow compare
-    //this approach is a performance improvement
-    //other way is to implement shouldComponentUpdate and return false
-    //this approach is favoured in most cases
     this.setState((state, props) => {
+      if (state.count === 4) {
+        //  Error boundary will catch it
+        throw new Error('Crashed!');
+      }
+
       return {
-        count: state.count,
+        count: ++state.count,
       };
     });
   };
