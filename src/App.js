@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,20 +10,18 @@ class App extends Component {
 
   clickHandler = (args) => {
     console.log('clickHandler');
+
+    //because the component is pure, same state doesn't cause re-render
+    //this does shallow compare
+    //this approach is a performance improvement
+    //other way is to implement shouldComponentUpdate and return false
+    //this approach is favoured in most cases
     this.setState((state, props) => {
       return {
-        count: ++state.count,
+        count: state.count,
       };
     });
   };
-
-  static getDerivedStateFromProps(props, state) {
-    //use props change to cause state change
-    console.log('getDerivedStateFromProps', props, state);
-    return {
-      count: state.count + 2,
-    };
-  }
 
   render() {
     console.log('App: Render');
