@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
-import Sample from './Sample';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      cities: ['Bengaluru', 'Mysuru', 'Haveri'],
     };
   }
 
-  increment = () => {
-    this.setState((state, props) => {
-      return {
-        count: state.count + 1,
-      };
-    });
+  clickHandler = (args) => {
+    console.log(args);
   };
-
-  componentDidUpdate() {
-    console.log('App: componentDidUpdate');
-  }
 
   render() {
     console.log('App: Render');
     return (
       <>
-        <Sample index={this.state.count} />
-
-        <button onClick={this.increment}>Increment</button>
+        <ul>
+          {this.state.cities.map((c) => {
+            return (
+              <button key={c} onClick={() => this.clickHandler(c)}>
+                Click {c}
+              </button>
+            );
+          })}
+        </ul>
       </>
     );
   }
