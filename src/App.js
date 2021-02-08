@@ -9,6 +9,7 @@ class App extends Component {
   }
 
   clickHandler = (args) => {
+    console.log('clickHandler');
     this.setState((state, props) => {
       return {
         count: ++state.count,
@@ -16,14 +17,12 @@ class App extends Component {
     });
   };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate', nextProps, nextState);
-
-    if (nextState.count % 2 === 0) {
-      return true;
-    }
-
-    return false;
+  static getDerivedStateFromProps(props, state) {
+    //use props change to cause state change
+    console.log('getDerivedStateFromProps', props, state);
+    return {
+      count: state.count + 2,
+    };
   }
 
   render() {
