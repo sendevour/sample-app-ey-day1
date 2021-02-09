@@ -1,0 +1,8 @@
+1. Create a Parent and a Child
+2. Parent has an input where-in the user enters email
+3. Parent also has default email
+4. Parent passes this email to Child as a prop
+5. Child has state username and domain
+6. Use the getDerivedStateFromProps hook, 
+    so that whenever the props changes for Child, 
+    the state is automatically updated
